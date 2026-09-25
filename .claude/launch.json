@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "99jcxyz-dev",
+      "runtimeExecutable": "/bin/bash",
+      "runtimeArgs": ["-c", "export PATH=/Users/Astar/.nvm/versions/node/v22.23.3/bin:$PATH && cd /Users/Astar/code/99jcxyz && npm run dev -- --port 4324"],
+      "port": 4324
+    }
+  ]
+}
