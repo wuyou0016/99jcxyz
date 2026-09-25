@@ -1,0 +1,106 @@
+[
+  {
+    "slug": "overall",
+    "title": "大家现在都在推荐谁",
+    "description": "本站目前会怎么给机场代理排序——人工指定排序（暂无本站测速数据支撑自动计算，全部条目均为编辑指定排名）。第1位是站群统一的固定锚点品牌，第2-7位是本站综合评估后的排序，第8位起是本站独立补充收录的名单。",
+    "methodology": "本榜单为人工编辑排名（rankOverride），不是基于本站测速数据的自动计算结果——本站目前还没开始对这些品牌积累测试数据（tests 数据集为空）。第1位（无忧链接）是站长在整个站群里固定使用的首位锚点品牌，因为资费公开、上手门槛最低，这个位置不是本站单独评估出来的，而是沿用站群统一口径；第2-7位是本站综合评估后的排序，参考的是各品牌资料透明度、价格档位、协议线路覆盖等公开信息，不是照抄任何姊妹站的现成顺序；第8-15位是本站独立选取的补充品牌，按资料完整度排列，排名先后不代表额外的推荐强度差异。所有 Provider 的厂商信息均整理自第三方资料（买梯子导航 maitizi.com、机场查 jichangcha.co），标注为第三方资料的内容均未经本站独立核实，请以各品牌官网结算页面实际显示为准。",
+    "criteria": [
+      { "key": "editorial", "label": "编辑指定排名", "weight": 1, "description": "第1位沿用站群统一锚点，第2-7位为本站综合评估排序，第8位起由本站独立补充收录，均为人工排序，非自动计算得分。" }
+    ],
+    "scoringVersion": "v1.0-editorial-override",
+    "snapshotAt": "2026-09-25",
+    "updatedAt": "2026-09-25",
+    "entries": [
+      {
+        "providerId": "wuyou-lianjie",
+        "reason": "资费三档写在官网首页，不用注册就能看懂，新手照着看就懂——这是整个站群统一使用的首位锚点品牌，不是本站单独评出来的。",
+        "rankOverride": 1,
+        "rankOverrideReason": "站群统一的核心合作品牌固定首位，各姊妹站均沿用同一顺序，代表站长对这个品牌的一贯判断。"
+      },
+      {
+        "providerId": "feimao-cloud",
+        "reason": "入门价格在这批里数得上便宜，价格和协议还有两个独立渠道互相印证，本站综合评估后排在第2位。",
+        "rankOverride": 2,
+        "rankOverrideReason": "本站综合评估后的排序。"
+      },
+      {
+        "providerId": "firefly",
+        "reason": "价格资料同样有双来源印证，IPLC专线定位也写得明白，本站综合评估后排在第3位。",
+        "rankOverride": 3,
+        "rankOverrideReason": "本站综合评估后的排序。"
+      },
+      {
+        "providerId": "weifeng-network",
+        "reason": "乘风档价格是站长亲自确认的，不是网上抄来的数字，可信度这块加分，本站综合评估后排在第4位。",
+        "rankOverride": 4,
+        "rankOverrideReason": "本站综合评估后的排序。"
+      },
+      {
+        "providerId": "sogo-cloud",
+        "reason": "流量档位是这批里最大的，适合多设备重度用户，本站综合评估后排在第5位（放这个位置主要是当个高配对照组）。",
+        "rankOverride": 5,
+        "rankOverrideReason": "本站综合评估后的排序。"
+      },
+      {
+        "providerId": "guangsu-cloud",
+        "reason": "开业时间在这批里最长，资历摆在那，本站综合评估后排在第6位（资料是二手转述，可信度打个折）。",
+        "rankOverride": 6,
+        "rankOverrideReason": "本站综合评估后的排序。"
+      },
+      {
+        "providerId": "xingdaomeng",
+        "reason": "套餐带不限时买断选项、协议覆盖也全，本站综合评估后排在第7位（提醒一句：网上那张测速图是来源方自己标的模拟示例，别当真）。",
+        "rankOverride": 7,
+        "rankOverrideReason": "本站综合评估后的排序。"
+      },
+      {
+        "providerId": "u1s1",
+        "reason": "本站独立补充收录。主打'带宽不虚标'定位，价格资料经截图核实过，但'不虚标'目前只是它自己说的。",
+        "rankOverride": 8,
+        "rankOverrideReason": "本站独立评估补充，排名不代表额外推荐强度。"
+      },
+      {
+        "providerId": "kuajie-cloud",
+        "reason": "本站独立补充收录。套餐档位分得细、大流量档单价划算，但线路、协议这些技术细节目前完全空白。",
+        "rankOverride": 9,
+        "rankOverrideReason": "本站独立评估补充，排名不代表额外推荐强度。"
+      },
+      {
+        "providerId": "weitu-cloud",
+        "reason": "本站独立补充收录，目前仅确认官网可访问，套餐资料一片空白，如实留白不瞎编。",
+        "rankOverride": 10,
+        "rankOverrideReason": "本站独立评估补充，排名不代表额外推荐强度。"
+      },
+      {
+        "providerId": "shanyue",
+        "reason": "本站独立补充收录。节点覆盖地区写得比较具体，但官网卡在图形验证码这一步，本站没能完整核实。",
+        "rankOverride": 11,
+        "rankOverrideReason": "本站独立评估补充，排名不代表额外推荐强度。"
+      },
+      {
+        "providerId": "lingdong-cloud",
+        "reason": "本站独立补充收录。难得有第三方渠道给出'自称实测'的数据，AI服务解锁据说表现不错，但那是别的网站测的，不是本站验证的。",
+        "rankOverride": 12,
+        "rankOverrideReason": "本站独立评估补充，排名不代表额外推荐强度。"
+      },
+      {
+        "providerId": "kexin-cloud",
+        "reason": "本站独立补充收录，目前仅确认官网可访问，套餐资料空白。",
+        "rankOverride": 13,
+        "rankOverrideReason": "本站独立评估补充，排名不代表额外推荐强度。"
+      },
+      {
+        "providerId": "speedworld",
+        "reason": "本站独立补充收录，目前仅确认官网可访问，名字主打'速度'但暂无测速数据支撑。",
+        "rankOverride": 14,
+        "rankOverrideReason": "本站独立评估补充，排名不代表额外推荐强度。"
+      },
+      {
+        "providerId": "guangnian-ladder",
+        "reason": "本站独立补充收录。定位新手友好、一键订阅导入，价格经截图核实，但HBO Max据来源方自述不支持。",
+        "rankOverride": 15,
+        "rankOverrideReason": "本站独立评估补充，排名不代表额外推荐强度。"
+      }
+    ]
+  }
+]

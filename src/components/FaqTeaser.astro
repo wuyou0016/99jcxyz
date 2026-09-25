@@ -1,0 +1,98 @@
+---
+// "大家都在问"首页板块——这是本站区别于机场吧(Hero+排名侧栏+TOP7卡片)
+// 和机场荟(Hero+横向对比表)的结构性差异之一：不摆表格，用真实存在的
+// FAQ 文章标题列出来。question 数组来自调用方对真实文章 headings 的
+// render() 结果，不是本站编的假问题，更不是模拟的"网友提问"。
+interface Question {
+  text: string;
+  href: string;
+}
+
+interface Props {
+  questions: Question[];
+  moreHref: string;
+  moreLabel: string;
+}
+
+const { questions, moreHref, moreLabel } = Astro.props;
+---
+
+<section class="section faq-teaser">
+  <div class="section__head">
+    <div>
+      <span class="section__eyebrow">大家都在问</span>
+      <h2>这几个问题，新手几乎都会问一遍</h2>
+    </div>
+    <a class="section__more" href={moreHref}>{moreLabel} →</a>
+  </div>
+
+  {
+    questions.length > 0 ? (
+      <ul class="faq-teaser__list">
+        {questions.map((q) => (
+          <li class="faq-teaser__item">
+            <a href={q.href}>
+              <span class="faq-teaser__q">问</span>
+              {q.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <div class="empty-state">
+        <p class="empty-state__title">常见问题整理中</p>
+        <p>还没有可以展示的问答内容，暂不硬凑几条出来占位。</p>
+      </div>
+    )
+  }
+
+  <p class="faq-teaser__note">这些问题都能在<a href={moreHref}>{moreLabel}</a>里找到完整答案，不是本站编的问题，也不是模拟的网友提问。</p>
+</section>
+
+<style>
+  .faq-teaser__list {
+    display: grid;
+    gap: var(--space-3);
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-4);
+  }
+
+  .faq-teaser__item a {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-weight: 600;
+    transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .faq-teaser__item a:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .faq-teaser__q {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    color: #fff;
+    font-size: 0.8125rem;
+    font-weight: 700;
+  }
+
+  .faq-teaser__note {
+    color: var(--color-muted);
+    font-size: 0.9375rem;
+  }
+</style>

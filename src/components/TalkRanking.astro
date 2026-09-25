@@ -1,0 +1,109 @@
+---
+// 首页"唠嗑版"排名列表——区别于 RankingEntries.astro（/rankings/ 系列页面用，
+// 带评分/调整明细的正式列表）和机场荟 CompareSnippet.astro（表格形式），
+// 这里只保留"第几名 + 名字 + 为什么选它"三件事，语气更像聊天时随口一句
+// 推荐理由，不是正式对比表格或评分面板。
+import type { RankingComputation } from '../data/utils/ranking-scoring';
+
+interface Props {
+  entries: RankingComputation[];
+}
+
+const { entries } = Astro.props;
+---
+
+<ol class="talk-ranking">
+  {
+    entries.map((entry) => (
+      <li class={`talk-ranking__item${entry.finalRank === 1 ? ' talk-ranking__item--top' : ''}`}>
+        <span class="talk-ranking__rank">{entry.finalRank}</span>
+        <div class="talk-ranking__body">
+          <a
+            class="talk-ranking__name"
+            href={`/airports/${entry.providerSlug}/`}
+            data-analytics-event="recommendation_card_click"
+            data-provider={entry.providerSlug}
+            data-provider-name={entry.providerName}
+            data-cta-label={`首页唠嗑榜第${entry.finalRank}名`}
+          >
+            {entry.providerName}
+          </a>
+          <p class="talk-ranking__reason">
+            <span class="talk-ranking__reason-label">为什么选它：</span>
+            {entry.reason}
+          </p>
+        </div>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .talk-ranking {
+    display: grid;
+    gap: var(--space-3);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .talk-ranking__item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+  }
+
+  .talk-ranking__item--top {
+    border-color: var(--color-primary);
+    background: linear-gradient(165deg, var(--color-primary-soft), var(--color-surface) 65%);
+  }
+
+  .talk-ranking__rank {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--color-surface-soft);
+    color: var(--color-muted);
+    font-weight: 700;
+    font-size: 0.9375rem;
+  }
+
+  .talk-ranking__item--top .talk-ranking__rank {
+    background: var(--gradient-primary);
+    color: #fff;
+  }
+
+  .talk-ranking__body {
+    min-width: 0;
+  }
+
+  .talk-ranking__name {
+    font-weight: 700;
+    font-size: 1.0625rem;
+    color: var(--color-text);
+  }
+
+  .talk-ranking__name:hover {
+    color: var(--color-primary);
+  }
+
+  .talk-ranking__reason {
+    margin: var(--space-1) 0 0;
+    color: var(--color-muted);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+
+  .talk-ranking__reason-label {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+</style>

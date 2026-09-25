@@ -1,0 +1,140 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HomeHero from '../components/HomeHero.astro';
+import StatsBar from '../components/StatsBar.astro';
+import FaqTeaser from '../components/FaqTeaser.astro';
+import TalkRanking from '../components/TalkRanking.astro';
+import { isDemoEntry } from '../data/utils/demo-filter';
+import { getPublishableProviders } from '../data/utils/provider-publish-gate';
+import { getRankingPageData } from '../data/utils/ranking-entries';
+import { getArticleHref } from '../data/utils/article-routing';
+import { resolveCanonicalUrl } from '../config/seo';
+
+// 首页展示"当前收录的推荐榜单数量"用的是真实存在的榜单页面数量（综合 + 三个专项），
+// 和 /rankings/ 首页用的是同一份 subRankings 结构，不是凭空写的数字。
+const RANKING_PAGE_COUNT = 4; // overall + best-value + most-stable + for-beginners
+
+const [articles, publishableProviders, { entries: overallEntries }] = await Promise.all([
+  getCollection('articles', ({ id }) => !isDemoEntry(id)),
+  getPublishableProviders(),
+  getRankingPageData('overall'),
+]);
+
+const talkEntries = overallEntries.slice(0, 7);
+
+// "大家都在问"板块：问题直接取自真实存在的 FAQ 文章的 H2 标题
+// （通过 render() 拿 Astro 实际生成的 heading.slug 做锚点），不是本站
+// 编的问题，也不会因为手写锚点字符串而链接到错误的位置。
+const faqArticle = articles.find((article) => article.id === 'airport-proxy-beginner-faq');
+let faqQuestions: { text: string; href: string }[] = [];
+if (faqArticle) {
+  const { headings } = await render(faqArticle);
+  const articleHref = getArticleHref(faqArticle);
+  faqQuestions = headings
+    .filter((heading) => heading.depth === 2 && !heading.text.includes('还没解决'))
+    .slice(0, 6)
+    .map((heading) => ({ text: heading.text, href: `${articleHref}#${heading.slug}` }));
+}
+
+// 首页唠嗑榜是可见内容里唯一的真实排名列表，ItemList 里只放名称+链接，
+// 不带任何评分/评级字段——当前数据模型里没有可靠的客观评分，写了就是虚构。
+const talkItemListJsonLd =
+  talkEntries.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: '99机场吧推荐榜 前7位',
+        itemListElement: talkEntries.map((entry, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: entry.providerName,
+          url: resolveCanonicalUrl(`/airports/${entry.providerSlug}/`),
+        })),
+      }
+    : null;
+---
+
+<BaseLayout
+  title="99机场吧｜机场代理，听过来人怎么说"
+  description="99机场吧用过来人聊经验的方式整理机场代理信息——大家实际会问的问题、真实存在的资料来源，都摆在明面上，不装权威，也不糊弄新手。"
+  keywords={['机场代理', '机场推荐', '机场新手教程', '机场怎么选', '99机场吧']}
+>
+  <HomeHero />
+
+  <div class="container">
+    <StatsBar providerCount={publishableProviders.length} rankingCount={RANKING_PAGE_COUNT} articleCount={articles.length} />
+
+    <FaqTeaser questions={faqQuestions} moreHref="/knowledge/airport-proxy-beginner-faq/" moreLabel="看完整问答" />
+
+    <section class="section">
+      <div class="section__head">
+        <div>
+          <span class="section__eyebrow">先说结论</span>
+          <h2>这几家，本站现在会怎么推荐</h2>
+        </div>
+        <a class="section__more" href="/rankings/">查看完整榜单 →</a>
+      </div>
+      {
+        talkEntries.length > 0 ? (
+          <TalkRanking entries={talkEntries} />
+        ) : (
+          <div class="empty-state">
+            <p class="empty-state__title">当前暂无符合发布条件的服务商</p>
+            <p>数据不足时我们不会为了凑数而给出推荐，等有服务商满足发布门槛后会自动出现在这里。</p>
+          </div>
+        )
+      }
+      <p class="talk-ranking__note">
+        第1位是站群统一使用的固定锚点品牌，第2位起是本站综合评估后的排序，具体理由和数据来源都写在
+        <a href="/rankings/">大家现在都在推荐谁</a>里。
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="section__head">
+        <div>
+          <span class="section__eyebrow">继续了解</span>
+          <h2>从这里开始</h2>
+        </div>
+      </div>
+      <div class="entry-grid">
+        <a class="entry-card" href="/airports/">
+          <span class="entry-card__title">机场大全</span>
+          <p class="entry-card__description">收录的机场代理服务商，价格、协议、线路一家家翻，官方信息、第三方资料、编辑判断分开标注。</p>
+          <span class="entry-card__cta">去机场大全看看 →</span>
+        </a>
+        <a class="entry-card" href="/rankings/">
+          <span class="entry-card__title">大家都在推荐谁</span>
+          <p class="entry-card__description">本站目前的推荐名单和理由，哪些是站群统一锚点、哪些是本站自己评的，写得明明白白。</p>
+          <span class="entry-card__cta">看推荐名单 →</span>
+        </a>
+        <a class="entry-card" href="/knowledge/">
+          <span class="entry-card__title">常见问题合集</span>
+          <p class="entry-card__description">新手常问的那些问题，一次性说人话讲清楚，不用你到处搜。</p>
+          <span class="entry-card__cta">进去看看 →</span>
+        </a>
+        <a class="entry-card" href="/tutorials/">
+          <span class="entry-card__title">上手教程</span>
+          <p class="entry-card__description">客户端怎么装、订阅怎么导入，跟着步骤走就行。</p>
+          <span class="entry-card__cta">查看教程 →</span>
+        </a>
+        <a class="entry-card" href="/troubleshooting/">
+          <span class="entry-card__title">故障排查</span>
+          <p class="entry-card__description">用起来连不上、速度不对劲，先来这里查一遍常见原因。</p>
+          <span class="entry-card__cta">查看排查合集 →</span>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  {talkItemListJsonLd && <script type="application/ld+json" set:html={JSON.stringify(talkItemListJsonLd)} />}
+</BaseLayout>
+
+<style>
+  .talk-ranking__note {
+    margin-top: var(--space-4);
+    color: var(--color-muted);
+    font-size: 0.9375rem;
+  }
+</style>
