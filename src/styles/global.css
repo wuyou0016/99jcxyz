@@ -1971,9 +1971,9 @@ td {
 }
 
 .ranking-list__item--top {
-  border-color: var(--color-primary);
-  background: var(--color-primary-soft);
-  box-shadow: var(--shadow-sm);
+  border: 2px solid #f59e0b;
+  background: linear-gradient(165deg, rgba(245, 158, 11, 0.08), var(--color-surface) 75%);
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.18);
 }
 
 .ranking-list__header {
@@ -1999,9 +1999,11 @@ td {
 }
 
 .ranking-list__item--top .ranking-list__rank {
-  background: var(--color-primary);
-  border-color: var(--color-primary);
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  border-color: #f59e0b;
   color: #fff;
+  font-size: 1rem;
+  box-shadow: 0 2px 6px rgba(245, 158, 11, 0.35);
 }
 
 .ranking-list__header a {

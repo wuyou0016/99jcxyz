@@ -16,23 +16,43 @@ const { entries } = Astro.props;
   {
     entries.map((entry) => (
       <li class={`talk-ranking__item${entry.finalRank === 1 ? ' talk-ranking__item--top' : ''}`}>
-        <span class="talk-ranking__rank">{entry.finalRank}</span>
+        <span class="talk-ranking__rank">
+          {entry.finalRank === 1 ? '👑' : entry.finalRank}
+        </span>
         <div class="talk-ranking__body">
-          <a
-            class="talk-ranking__name"
-            href={`/airports/${entry.providerSlug}/`}
-            data-analytics-event="recommendation_card_click"
-            data-provider={entry.providerSlug}
-            data-provider-name={entry.providerName}
-            data-cta-label={`首页唠嗑榜第${entry.finalRank}名`}
-          >
-            {entry.providerName}
-          </a>
+          <div class="talk-ranking__header-row">
+            <a
+              class="talk-ranking__name"
+              href={`/airports/${entry.providerSlug}/`}
+              data-analytics-event="recommendation_card_click"
+              data-provider={entry.providerSlug}
+              data-provider-name={entry.providerName}
+              data-cta-label={`首页唠嗑榜第${entry.finalRank}名`}
+            >
+              {entry.providerName}
+            </a>
+            {entry.finalRank === 1 && (
+              <span class="talk-ranking__badge-gold">👑 站群统一首推 · 综合第 1 名</span>
+              <span class="talk-ranking__price-pill">低至 ¥6.6/月（MINI档）</span>
+            )}
+          </div>
           <p class="talk-ranking__reason">
             <span class="talk-ranking__reason-label">为什么选它：</span>
             {entry.reason}
           </p>
         </div>
+        {entry.finalRank === 1 && (
+          <a
+            class="talk-ranking__cta-btn"
+            href={`/airports/${entry.providerSlug}/`}
+            data-analytics-event="recommendation_card_click"
+            data-provider={entry.providerSlug}
+            data-provider-name={entry.providerName}
+            data-cta-label="首页唠嗑榜第1名直达"
+          >
+            查看评测 →
+          </a>
+        )}
       </li>
     ))
   }
@@ -58,8 +78,9 @@ const { entries } = Astro.props;
   }
 
   .talk-ranking__item--top {
-    border-color: var(--color-primary);
-    background: linear-gradient(165deg, var(--color-primary-soft), var(--color-surface) 65%);
+    border: 2px solid #f59e0b;
+    background: linear-gradient(165deg, rgba(245, 158, 11, 0.1), var(--color-surface) 65%);
+    box-shadow: 0 4px 20px rgba(245, 158, 11, 0.18);
   }
 
   .talk-ranking__rank {
@@ -77,12 +98,68 @@ const { entries } = Astro.props;
   }
 
   .talk-ranking__item--top .talk-ranking__rank {
-    background: var(--gradient-primary);
+    background: linear-gradient(135deg, #f59e0b, #d97706);
     color: #fff;
+    font-size: 1.125rem;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
   }
 
   .talk-ranking__body {
     min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .talk-ranking__header-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .talk-ranking__badge-gold {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    box-shadow: 0 2px 6px rgba(245, 158, 11, 0.3);
+  }
+
+  .talk-ranking__price-pill {
+    background: rgba(245, 158, 11, 0.12);
+    color: #d97706;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+
+  :root[data-theme='dark'] .talk-ranking__price-pill {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fbbf24;
+    border-color: rgba(245, 158, 11, 0.4);
+  }
+
+  .talk-ranking__cta-btn {
+    align-self: center;
+    flex-shrink: 0;
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #fff;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);
+    white-space: nowrap;
+    transition: transform 0.15s ease;
+  }
+
+  .talk-ranking__cta-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.5);
   }
 
   .talk-ranking__name {
