@@ -20,7 +20,7 @@ relatedTopics: ["what-is-airport-proxy", "airport-proxy-beginner-faq"]
 - **舒心**：¥19/月起，100GB
 - **省心**：¥33/月起，200GB
 
-协议方面公开的是 VLESS、Trojan、Hysteria2，线路写的是 IPLC、IEPL，节点覆盖香港、日本、新加坡、美国，客户端支持 Clash 系、Shadowrocket、v2rayN 这些主流选择。这些信息本站是通过第三方导航站买梯子导航（maitizi.com）核实整理的，标注为资料已核实；官网入口这边，本站用的是站长在此前项目里已经验证能正常使用的地址（mtklink.cc/wuyou），不是随便找的跳转链接。
+协议方面公开的是 VLESS、Trojan、Hysteria2，线路写的是 IPLC、IEPL，节点覆盖香港、日本、新加坡、美国，客户端支持 Clash 系、Shadowrocket、v2rayN 这些主流选择。这些信息本站是通过第三方导航站买梯子导航（maitizi.com）核实整理的，标注为资料已核实；官网入口这边，本站用的是站长在此前项目里已经验证能正常使用的地址（vip02.worryfreeaff.com），不是随便找的跳转链接。
 
 ## 本站为什么把它放综合推荐第一位
 
@@ -28,7 +28,7 @@ relatedTopics: ["what-is-airport-proxy", "airport-proxy-beginner-faq"]
 
 ## 有个信息缺口，如实说一下
 
-早前站长在另一个项目（rocketjichang.com）里也收录过这家，当时记录的官方入口是一个要过图形验证码的页面，没能看到具体套餐页；而且不同渠道当时给出的价格版本还对不上——有的说约¥6.5/月起，有的说¥12.92/月起，有的说¥19/月起。本站不知道哪个版本是当时更准的，所以这里如实留个记录，不替你选一个"看起来更合理"的数字。现在通过 mtklink.cc/wuyou 这个地址看到的三档资料，是本站目前认为最新、最完整的版本。
+早前站长在另一个项目（rocketjichang.com）里也收录过这家，当时记录的官方入口是一个要过图形验证码的页面，没能看到具体套餐页；而且不同渠道当时给出的价格版本还对不上——有的说约¥6.5/月起，有的说¥12.92/月起，有的说¥19/月起。本站不知道哪个版本是当时更准的，所以这里如实留个记录，不替你选一个"看起来更合理"的数字。现在通过 vip02.worryfreeaff.com 这个地址看到的三档资料，是本站目前认为最新、最完整的版本。
 
 ## 优点和缺点，都摆出来
 
@@ -46,4 +46,4 @@ relatedTopics: ["what-is-airport-proxy", "airport-proxy-beginner-faq"]
 
 ## 想再确认一下？
 
-自己去官网看最新价格和活动：<a href="https://mtklink.cc/wuyou" rel="nofollow noopener" target="_blank">mtklink.cc/wuyou</a>（具体优惠以结算页实际显示为准）。想看本站怎么整理其他服务商的资料，去<a href="/airports/">机场导航</a>逐个翻；还没搞懂机场、协议这些概念的，先看<a href="/knowledge/what-is-airport-proxy/">机场代理到底是个啥</a>和<a href="/knowledge/airport-proxy-beginner-faq/">新手最常问的几个问题</a>。
+自己去官网看最新价格和活动：<a href="https://vip02.worryfreeaff.com/#/?code=XT1WDPvr" rel="nofollow noopener" target="_blank">vip02.worryfreeaff.com</a>（具体优惠以结算页实际显示为准）。想看本站怎么整理其他服务商的资料，去<a href="/airports/">机场导航</a>逐个翻；还没搞懂机场、协议这些概念的，先看<a href="/knowledge/what-is-airport-proxy/">机场代理到底是个啥</a>和<a href="/knowledge/airport-proxy-beginner-faq/">新手最常问的几个问题</a>。
